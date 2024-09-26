@@ -9,6 +9,6 @@ Reverse Shell with C
 
 -compile the code:
       
-    gcc -o backdoor backdoor.c -lws2_32
+    gcc -o reverse_shell reverse_shell.c -lws2_32
 
 -unfortunately, the backdoor is detectable by windows defender, but I'm already working on exploiting more win32 api functions for evasion

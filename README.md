@@ -12,3 +12,12 @@ Reverse Shell with C
     gcc -o reverse_shell reverse_shell.c -lws2_32
 
 -unfortunately, the backdoor is detectable by windows defender, but I'm already working on exploiting more win32 api functions for evasion
+
+
+30/12/2024
+
+-I added obfuscation techniques to the backdoor.
+
+-it loads the necessary dlls independently and deals with all the API function as offsets which drastically decreased detection rates.
+
+-EXECUTION (bear in mind that windows defender is turned on):

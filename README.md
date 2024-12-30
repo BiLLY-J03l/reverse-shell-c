@@ -26,9 +26,6 @@ Reverse Shell with C
 ![image](https://github.com/user-attachments/assets/98a532b8-fe10-4bd5-a27b-721f4cffd1e5)
 
 
-![image](https://github.com/user-attachments/assets/02027d91-ddad-436f-ae0f-694b974ff517)
-
-
 ![image](https://github.com/user-attachments/assets/55a7ea2c-0e11-48be-8504-557007d124bb)
 
 

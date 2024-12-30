@@ -17,7 +17,7 @@ Reverse Shell with C
 
 30/12/2024
 
--I added obfuscation techniques to the backdoor.
+-Added obfuscation techniques to the backdoor.
 
 -It's safe to say that the backdoor is TOTALLY UNDETECTABLE by Windows Defender (static AND dynamic)
 

@@ -1,4 +1,4 @@
-# reverse-shell-c
+![image](https://github.com/user-attachments/assets/98a532b8-fe10-4bd5-a27b-721f4cffd1e5)# reverse-shell-c
 Reverse Shell with C
 
 -reverse shell for windows
@@ -14,6 +14,7 @@ Reverse Shell with C
 -unfortunately, the backdoor is detectable by windows defender, but I'm already working on exploiting more win32 api functions for evasion
 
 
+
 30/12/2024
 
 -I added obfuscation techniques to the backdoor.
@@ -21,3 +22,20 @@ Reverse Shell with C
 -it loads the necessary dlls independently and deals with all the API function as offsets which drastically decreased detection rates.
 
 -EXECUTION (bear in mind that windows defender is turned on):
+
+
+![image](https://github.com/user-attachments/assets/02027d91-ddad-436f-ae0f-694b974ff517)
+
+
+![image](https://github.com/user-attachments/assets/55a7ea2c-0e11-48be-8504-557007d124bb)
+
+
+![image](https://github.com/user-attachments/assets/2b2d82b4-1036-433e-bb60-4e26578fb8c9)
+
+
+
+The VirusTotal analysis:
+
+![Uploading image.png…]()
+
+

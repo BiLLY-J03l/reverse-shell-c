@@ -13,7 +13,7 @@ Reverse Shell with C
 
 -unfortunately, the backdoor is detectable by windows defender, but I'm already working on exploiting more win32 api functions for evasion
 
-
+---------------------------------------------------------
 
 30/12/2024
 
@@ -36,6 +36,6 @@ Reverse Shell with C
 
 The VirusTotal analysis:
 
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/893ec2db-b608-4c88-bed4-5c99e69bbc10)
 
 

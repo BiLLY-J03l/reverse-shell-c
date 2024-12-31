@@ -21,7 +21,7 @@ Reverse Shell with C
 
 -It's safe to say that the backdoor is TOTALLY UNDETECTABLE by Windows Defender (static AND dynamic)
 
--it loads the necessary dlls independently and deals with all the API function as offsets which drastically decreased detection rates.
+-It loads the necessary DLLs independently and deals with all the API functions and DLL names as offsets which drastically decreased detection rates.
 
 -EXECUTION (bear in mind that windows defender is turned on):
 

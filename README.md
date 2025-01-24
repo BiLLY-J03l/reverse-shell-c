@@ -9,7 +9,7 @@ Reverse Shell with C
 
 -compile the code:
       
-    ~~ gcc -o reverse_shell reverse_shell.c -lws2_32 ~~
+=>      ~~gcc -o reverse_shell reverse_shell.c -lws2_32~~
 
 ### updated
     cl reverse_shell.c

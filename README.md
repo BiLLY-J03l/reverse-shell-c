@@ -1,32 +1,32 @@
 # reverse-shell-c
 Reverse Shell with C
 
--reverse shell for windows
+- reverse shell for windows
 
--the code exploits win32 api functions to create a connection to a listener, then creates a cmd.exe process where stderr, stdin and stdout are all directed to the listener
+- the code exploits win32 api functions to create a connection to a listener, then creates a cmd.exe process where stderr, stdin and stdout are all directed to the listener
 
--add the listener address and port before compiling
+- add the listener address and port before compiling
 
--compile the code:
+- compile the code:
       
 =>      ~~gcc -o reverse_shell reverse_shell.c -lws2_32~~
 
 ### updated
     cl reverse_shell.c
 
--unfortunately, the backdoor is detectable by windows defender, but I'm already working on exploiting more win32 api functions for evasion
+- unfortunately, the backdoor is detectable by windows defender, but I'm already working on exploiting more win32 api functions for evasion
 
 ---------------------------------------------------------
 
-30/12/2024
+**30/12/2024**
 
--Added obfuscation techniques to the backdoor.
+- Added obfuscation techniques to the backdoor.
 
--It's safe to say that the backdoor is TOTALLY UNDETECTABLE by Windows Defender (static AND dynamic)
+- It's safe to say that the backdoor is TOTALLY UNDETECTABLE by Windows Defender (static AND dynamic)
 
--It loads the necessary DLLs independently and deals with all the API functions and DLL names as offsets which drastically decreased detection rates.
+- It loads the necessary DLLs independently and deals with all the API functions and DLL names as offsets which drastically decreased detection rates.
 
--EXECUTION (bear in mind that windows defender is turned on):
+- EXECUTION (bear in mind that windows defender is turned on):
 
 ![image](https://github.com/user-attachments/assets/98a532b8-fe10-4bd5-a27b-721f4cffd1e5)
 
@@ -38,7 +38,7 @@ Reverse Shell with C
 
 
 
-The VirusTotal analysis:
+## The VirusTotal analysis:
 
 ![image](https://github.com/user-attachments/assets/893ec2db-b608-4c88-bed4-5c99e69bbc10)
 
